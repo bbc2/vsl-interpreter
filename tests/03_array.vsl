@@ -1,0 +1,8 @@
+FUNC VOID main()
+{
+  INT a[2]
+  a[0] := 17
+  a[1] := 42
+  PRINT a[0], ",", a[1]
+}
+

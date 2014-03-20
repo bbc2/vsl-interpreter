@@ -1,0 +1,7 @@
+FUNC VOID main()
+{
+  INT a
+  a := 17
+  PRINT a
+}
+

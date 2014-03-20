@@ -26,3 +26,10 @@ let rec find ref env = match env with
   | cur::tl -> try SMap.find ref cur
                with Not_found -> find ref tl
 
+let rec update ref value env = match env with
+  | [] -> failwith (Printf.sprintf "Unbound variable %s" ref)
+  | cur::tl ->
+    if SMap.mem ref cur then
+      (SMap.add ref value cur)::tl
+    else
+      cur::(update ref value tl)

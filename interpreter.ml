@@ -23,10 +23,16 @@ let rec feval funs ctx name args =
 
 and ieval funs ctx i = match i with
   | Return e -> { env = ctx.env ; ret = Some (eeval funs ctx.env e) }
-  | Assign (Var v, e) -> { env = Env.add v (Type.Int (eeval funs ctx.env e)) ctx.env;
+  | Assign (Var v, e) -> { env = Env.update v (Type.Int (eeval funs ctx.env e)) ctx.env;
                            ret = None }
-  | Assign (Array (_, _), _) -> failwith "Array assignment not implemented"
+  | Assign (Array (a, ei), ev) ->
+    let ia = Type.get_intarray (Env.find a ctx.env) in
+    ia.(eeval funs ctx.env ei) <- eeval funs ctx.env ev; ctx
   | Block (decls, insts) ->
+    let rec declare decls env = match decls with
+      | [] -> env
+      | (DeclVar v)::tl -> declare tl (Env.add v (Type.Int 0) env)
+      | (DeclArray (a, size))::tl -> declare tl (Env.add a (Type.IntArray (Array.make size 0)) env) in
     let rec execute insts ctx = match insts with
       | [] -> ctx
       | i::tl ->
@@ -34,7 +40,7 @@ and ieval funs ctx i = match i with
         match new_ctx.ret with
         | Some _ -> new_ctx
         | None -> execute tl new_ctx in
-    let final_ctx = execute insts { ctx with env = Env.push ctx.env } in
+    let final_ctx = execute insts { ctx with env = (declare decls (Env.push ctx.env)) } in
     { final_ctx with env = Env.pop final_ctx.env }
   | Print printables ->
     let rec print printables =

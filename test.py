@@ -10,6 +10,8 @@ TEST_DIR = 'tests/'
 OUT = {
     '00_print.vsl': 'Hello 17',
     '01_op.vsl': '5',
+    '02_var.vsl': '17',
+    '03_array.vsl': '17,42',
 }
 
 def red(msg):
