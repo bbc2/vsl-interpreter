@@ -1,0 +1,5 @@
+FUNC VOID main()
+{
+  PRINT "Hello ", 17
+}
+
