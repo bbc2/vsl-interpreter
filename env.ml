@@ -15,16 +15,17 @@ let add ref value env = match env with
 let bind assoc env = match env with
   | [] -> failwith "Trying to bind on an empty env"
   | cur::tl ->
-      let rec bind_rec assoc acc = match assoc with
+    let rec bind_rec assoc acc = match assoc with
       | [] -> acc
       | (ref, value)::tl -> bind_rec tl (SMap.add ref value acc)
-      in
-      (bind_rec assoc cur)::tl
+    in
+    (bind_rec assoc cur)::tl
 
 let rec find ref env = match env with
   | [] -> failwith (Printf.sprintf "Unbound variable %s" ref)
-  | cur::tl -> try SMap.find ref cur
-               with Not_found -> find ref tl
+  | cur::tl ->
+    try SMap.find ref cur
+    with Not_found -> find ref tl
 
 let rec update ref value env = match env with
   | [] -> failwith (Printf.sprintf "Unbound variable %s" ref)
