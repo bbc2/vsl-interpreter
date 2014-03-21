@@ -1,0 +1,32 @@
+FUNC VOID main()
+{
+  INT size, i, t[10], sum, mean, var
+  size := 10
+
+  i := 0
+  WHILE size - i DO {
+    PRINT "t[", i, "]? "
+    READ t[i]
+    i := i + 1
+  } DONE
+
+  i := 0
+  sum := 0
+  WHILE size - i DO {
+    sum := sum + t[i]
+    i := i + 1
+  } DONE
+
+  i := 0
+  var := 0
+  mean := sum / size
+  WHILE size - i DO {
+    var := var + (t[i] - mean) * (t[i] - mean)
+    i := i + 1
+  } DONE
+
+  var := var / size
+
+  PRINT sum, ",", mean, ",", var
+}
+

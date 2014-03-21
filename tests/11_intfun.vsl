@@ -1,0 +1,19 @@
+FUNC INT pow(a, b) {
+  INT result
+  result := 1
+
+  WHILE b DO {
+    result := result * a
+    b := b - 1
+  } DONE
+  RETURN result
+}
+
+FUNC VOID main()
+{
+  INT a, c
+  a := 5
+  c := 4
+  PRINT pow(2, 3), ",", pow(a, c)
+}
+

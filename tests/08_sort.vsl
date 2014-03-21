@@ -1,0 +1,62 @@
+FUNC VOID main()
+{
+  INT size, i, j, t[10], x, continue, diff, a, b
+  size := 10
+
+  i := 0
+  WHILE size - i DO {
+    PRINT "t[", i, "]? "
+    READ t[i]
+    i := i + 1
+  } DONE
+
+  i := 1
+  WHILE size - i DO {
+    x := t[i]
+    j := i
+
+    IF j THEN {
+      diff := t[j - 1] - x
+      a := diff
+      b := diff
+      WHILE a * b DO {
+        a := a - 1
+        b := b + 1
+      } DONE
+      continue := b
+    } ELSE
+      continue := 0
+    FI
+
+    WHILE continue DO {
+      t[j] := t[j - 1]
+      j := j - 1
+
+      IF j THEN {
+        diff := t[j - 1] - x
+        a := diff
+        b := diff
+        WHILE a * b DO {
+          a := a - 1
+          b := b + 1
+        } DONE
+        continue := b
+      } ELSE
+        continue := 0
+      FI
+    } DONE
+
+    t[j] := x
+    i := i + 1
+  } DONE
+
+  i := 0
+  WHILE size - i DO {
+    PRINT t[i]
+
+    IF size - i - 1 THEN
+      PRINT ","
+    FI
+    i := i + 1
+  } DONE
+}

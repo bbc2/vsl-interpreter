@@ -1,0 +1,13 @@
+FUNC VOID main()
+{
+  INT a
+  a := 3
+
+  WHILE a DO {
+      PRINT a, ","
+      a := a - 1
+  } DONE
+
+  PRINT a
+}
+

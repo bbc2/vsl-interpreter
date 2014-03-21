@@ -1,0 +1,14 @@
+FUNC VOID main()
+{
+  INT a, b[2]
+  a := 0
+  b[0] := 1
+  {
+    INT a
+    a := 2
+    b[1] := 3
+    PRINT a, ",", b[0], ",", b[1], ","
+  }
+  PRINT a, ",", b[0], ",", b[1]
+}
+
