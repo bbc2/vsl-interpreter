@@ -10,11 +10,11 @@ TEST_DIR = 'tests/'
 TESTS = {
     '00_print.vsl': { 'in': '', 'out': 'Hello 17' },
     '01_op.vsl': { 'in': '', 'out': '5' },
-    '02_var.vsl': { 'in' : '', 'out': '17' },
-    '03_array.vsl': { 'in' : '', 'out': '17,42' },
-    '04_read.vsl': { 'in' : '17\n42', 'out': '18,43' },
-    '05_if.vsl': { 'in' : '', 'out': '1,0,0,0' },
-    '06_while.vsl': { 'in' : '', 'out': '3,2,1,0' },
+    '02_var.vsl': { 'in': '', 'out': '17' },
+    '03_array.vsl': { 'in': '', 'out': '17,42' },
+    '04_read.vsl': { 'in': '17\n42', 'out': '18,43' },
+    '05_if.vsl': { 'in': '', 'out': '1,0,0,0' },
+    '06_while.vsl': { 'in': '', 'out': '3,2,1,0' },
     '07_variance.vsl': {
         'in': '5\n1\n0\n-2\n42\n7\n9\n5\n17\n0',
         'out': 't[0]? t[1]? t[2]? t[3]? t[4]? t[5]? t[6]? t[7]? t[8]? t[9]? 84,8,153',
