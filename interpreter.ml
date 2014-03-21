@@ -66,6 +66,16 @@ and ieval funs ctx i = match i with
       | Some i_else -> ieval funs ctx i_else
     else
       ieval funs ctx i_then
+  | While (cond, body) ->
+    let rec loop ctx =
+      match ctx.ret with
+      | Some _ -> ctx
+      | None ->
+        if (eeval funs ctx.env cond) = 0 then
+          ctx
+        else
+          loop (ieval funs ctx body) in
+    loop ctx
   | _ -> failwith "Instruction not implemented"
 
 and eeval funs env e = match e with
