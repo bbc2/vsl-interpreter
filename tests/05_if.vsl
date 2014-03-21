@@ -1,0 +1,35 @@
+FUNC VOID main()
+{
+  INT a
+
+  IF 0 THEN
+    a := 0
+  ELSE
+    a := 1
+  FI
+
+  PRINT a, ","
+
+  IF 1 THEN
+    a := 0
+  ELSE
+    a := 1
+  FI
+
+  PRINT a, ","
+
+  IF 2 THEN
+    a := 0
+  ELSE
+    a := 1
+  FI
+
+  PRINT a, ","
+
+  IF 0 THEN
+    a := 2
+  FI
+
+  PRINT a
+}
+

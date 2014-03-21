@@ -59,6 +59,13 @@ and ieval funs ctx i = match i with
         ia.(eeval funs ctx.env ei) <- read_int ();
         read env tl in
     { ctx with env = read ctx.env refs }
+  | If (cond, i_then, maybe_i_else) ->
+    if (eeval funs ctx.env cond) = 0 then
+      match maybe_i_else with
+      | None -> ctx
+      | Some i_else -> ieval funs ctx i_else
+    else
+      ieval funs ctx i_then
   | _ -> failwith "Instruction not implemented"
 
 and eeval funs env e = match e with

@@ -13,6 +13,7 @@ TESTS = {
     '02_var.vsl': { 'in' : '', 'out': '17' },
     '03_array.vsl': { 'in' : '', 'out': '17,42' },
     '04_read.vsl': { 'in' : '17\n42', 'out': '18,43' },
+    '05_if.vsl': { 'in' : '', 'out': '1,0,0,0' },
 }
 
 def red(msg):
