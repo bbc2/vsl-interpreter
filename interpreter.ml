@@ -49,6 +49,16 @@ and ieval funs ctx i = match i with
       | (Str s)::tl -> print_string (Scanf.unescaped s); print tl
       | (Expr e)::tl -> print_int (eeval funs ctx.env e); print tl in
     print printables; ctx
+  | Read refs ->
+    let rec read env refs =
+      match refs with
+      | [] -> env
+      | (Var v)::tl -> read (Env.update v (Type.Int (read_int ())) env) tl
+      | (Array (a, ei))::tl ->
+        let ia = Type.get_intarray (Env.find a ctx.env) in
+        ia.(eeval funs ctx.env ei) <- read_int ();
+        read env tl in
+    { ctx with env = read ctx.env refs }
   | _ -> failwith "Instruction not implemented"
 
 and eeval funs env e = match e with
