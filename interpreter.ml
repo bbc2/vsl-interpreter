@@ -23,6 +23,17 @@ let rec feval funs ctx name args =
 
 and ieval funs ctx i = match i with
   | Return e -> { env = ctx.env ; ret = Some (eeval funs ctx.env e) }
+  | VoidCall (name, args) ->
+    let argeval funs env a = match a with
+      | Ref (Var v) -> Env.find v env
+      | _ -> Type.Int (eeval funs env a) in
+    let new_ctx = feval funs ctx name
+        (List.map (argeval funs ctx.env) args) in
+    begin
+      match new_ctx.ret with
+      | Some n -> failwith "Function returning something"
+      | None -> new_ctx
+    end
   | Assign (Var v, e) -> { env = Env.update v (Type.Int (eeval funs ctx.env e)) ctx.env;
                            ret = None }
   | Assign (Array (a, ei), ev) ->
@@ -76,7 +87,6 @@ and ieval funs ctx i = match i with
         else
           loop (ieval funs ctx body) in
     loop ctx
-  | _ -> failwith "Instruction not implemented"
 
 and eeval funs env e = match e with
   | Int i -> i

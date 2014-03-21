@@ -1,0 +1,20 @@
+FUNC VOID tabset(t[], size, value) {
+  INT i
+
+  i := 0
+  WHILE size - i DO {
+    t[i] := value
+    i := i + 1
+  } DONE
+}
+
+FUNC VOID main()
+{
+  INT a[2], size
+  size := 2
+  a[0] := 0
+  a[1] := 1
+  tabset(a, size, 2)
+  PRINT a[0], ",", a[1]
+}
+

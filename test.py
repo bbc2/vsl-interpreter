@@ -25,6 +25,7 @@ TESTS = {
     },
     '10_block.vsl': { 'in': '', 'out': '2,1,3,0,1,3' },
     '11_intfun.vsl': { 'in': '', 'out': '8,625' },
+    '12_voidfun.vsl': { 'in': '', 'out': '2,2' },
 }
 
 def red(msg):
