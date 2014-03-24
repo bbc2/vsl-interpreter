@@ -1,0 +1,26 @@
+FUNC INT find(t[], size, value) {
+  INT i
+
+  i := 0
+  WHILE size - i DO {
+    IF t[i] - value THEN
+      PRINT ""
+    ELSE
+      RETURN i
+    FI
+    i := i + 1
+  } DONE
+  RETURN i
+}
+
+FUNC VOID main()
+{
+  INT a[4], size
+  size := 4
+  a[0] := 17
+  a[1] := 42
+  a[2] := 13
+  a[3] := 37
+  PRINT find(a, size, 13)
+}
+
