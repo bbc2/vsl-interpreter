@@ -1,26 +1,18 @@
-type prog = part list
-
-and part =
-  | Fun of ret_type * string * arg list * inst
-  | Proto of ret_type * string * arg list
-
-and ret_type =
-  | VoidFun
-  | IntFun
-
-and arg =
+type arg =
   | ArgVar of string
   | ArgArray of string
 
-and inst =
-  | Return of expr
-  | VoidCall of string * expr list
-  | Assign of ref * expr
-  | Print of printable list
-  | Read of ref list
-  | If of expr * inst * inst option
-  | While of expr * inst
-  | Block of decl list * inst list
+type ret_type =
+  | VoidFun
+  | IntFun
+
+type decl =
+  | DeclVar of string
+  | DeclArray of string * int
+
+type ref =
+  | Var of string
+  | Array of string * expr
 
 and expr =
   | Int of int
@@ -31,16 +23,23 @@ and expr =
   | Div of expr * expr
   | IntCall of string * expr list
 
-and ref =
-  | Var of string
-  | Array of string * expr
-
-and printable =
+type printable =
   | Str of string
   | Expr of expr
 
-and decl =
-  | DeclVar of string
-  | DeclArray of string * int
+type inst =
+  | Return of expr
+  | VoidCall of string * expr list
+  | Assign of ref * expr
+  | Print of printable list
+  | Read of ref list
+  | If of expr * inst * inst option
+  | While of expr * inst
+  | Block of decl list * inst list
 
+type part =
+  | Fun of ret_type * string * arg list * inst
+  | Proto of ret_type * string * arg list
+
+type prog = part list
 
