@@ -66,7 +66,7 @@ and ieval funs ctx i = match i with
       | [] -> env
       | (Var v)::tl -> read (Env.update v (Type.Int (read_int ())) env) tl
       | (Array (a, ei))::tl ->
-        let ia = Type.get_intarray (Env.find a ctx.env) in
+        let ia = Type.get_intarray (Env.find a env) in
         ia.(eeval funs ctx.env ei) <- read_int ();
         read env tl in
     { ctx with env = read ctx.env refs }
